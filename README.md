@@ -7,7 +7,8 @@ FAOSTAT
 
 This repository contains all the files to build the FAOSTAT package.
 
-# NOTE: This package has been orphaned due to the current re-development of the FAOSTAT API and the fact that I no longer work for the organisation and has no access to the updates.
+# NOTE: This package is currently under development at :
+# https://github.com/paulrougieux/FAOSTATpackage 
 
 ==============================================================================
 
@@ -22,7 +23,7 @@ version can be installed by specifying the **ref** argument.
 
 ```r
 library(devtools)
-install_github(repo = "mkao006/FAOSTATpackage", subdir = "FAOSTAT")
+install_github(repo = "paulrougieux/FAOSTATpackage", subdir = "FAOSTAT")
 ```
 
 Vignettes and demos are available and please make use of them:
@@ -31,3 +32,4 @@ Vignettes and demos are available and please make use of them:
 vignette(topic = "FAOSTAT")
 demo(topic = "FAOSTATdemo")
 ```
+
