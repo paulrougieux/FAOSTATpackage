@@ -4,7 +4,7 @@ Title: Download Data from the FAOSTAT Database of the Food and Agricultural Orga
 Version: 2.1.1
 Date: 2020-02-03
 Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
-Maintainer: Paul Rougieux 
+Maintainer: Paul Rougieux <paul.rougieux@gmail.com>
 Description: A list of functions to download statistics from FAOSTAT (database of the Food and Agricultural Organization of the United Nations) and WDI (database of the World Bank), and to perform some harmonization operations.
 URL: https://github.com/paulrougieux/FAOSTATpackage 
 Imports:
