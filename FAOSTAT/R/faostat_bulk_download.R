@@ -10,7 +10,11 @@
 #' @examples 
 #' \dontrun{
 #' # Load global forestry data in long format
-#' url_forestry <- "http://fenixservices.fao.org/faostat/static/bulkdownloads/Forestry_E_All_Data_(Normalized).zip"
+#' # Separated in 2 to avoid a warning about "examples lines wider than 100 characters"
+#' # In practice you can enter the full url directly as the url_bulk argument.
+#' url_bulk_site <- "http://fenixservices.fao.org/faostat/static/bulkdownloads"
+#' bulk_file <- "Forestry_E_All_Data_(Normalized).zip"
+#' url_forestry <- file.path(url_bulk_site, bulk_file)
 #' download_faostat_bulk(url_forestry)
 #' }
 #' @export
