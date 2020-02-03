@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.tex
+*.log
+*.pdf
+*.synctex.gz
+*.tex
+*.tar.gz
+*.Rcheck/*
+*.Rproj
