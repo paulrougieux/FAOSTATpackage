@@ -33,10 +33,10 @@ A data frame containing the desired World Bank Indicator
 A function to extract data from the World Bank API
 }
 \details{
-Please refer to \url{http://data.worldbank.org/node/18} for any
+Please refer to \url{https://data.worldbank.org/} for any
 difference between the country code system. Further details on World
 Bank classification and methodology are available at
-\url{http://data.worldbank.org/}.
+\url{https://data.worldbank.org/}.
 }
 \examples{
 ## pop.df = getWDI()

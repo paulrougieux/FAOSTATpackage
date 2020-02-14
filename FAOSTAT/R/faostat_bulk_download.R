@@ -41,5 +41,7 @@ read_faostat_bulk <- function(zip_file_name){
     csv_file_name <- gsub(".zip$",".csv", basename(zip_file_name))
     # Read the csv file within the zip file
     df <- read.csv(unz(zip_file_name, csv_file_name), stringsAsFactors = FALSE)
+    # Rename columns to lowercase
+    names(df) <- tolower(gsub("\\.","_",names(df)))
     return(df)
 }

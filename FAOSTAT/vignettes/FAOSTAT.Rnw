@@ -1,5 +1,6 @@
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Download and harmonize FAOSTAT and WDI data: the FAOSTAT package}
+%\VignetteEncoding{UTF-8}
 %% LaTeX packages and LaTeX
 \documentclass[nojss]{jss}
 \usepackage{url}
@@ -49,6 +50,11 @@
 %% Fax: +43/512/507-2851
 
 \begin{document}
+%% Remove the concordance option otherwise you will get the error
+%% "creating vignettes ... ERROR"
+%% "--- re-building ‘FAOSTAT.Rnw’ using knitr"
+%% "It seems you are using the Sweave-specific syntax in line(s) 52;"
+
 
 <<setup, include=FALSE, cache=FALSE>>=
 library("knitr")
@@ -203,18 +209,18 @@ Merge is a typical data manipulation step in daily work yet a non-trivial exerci
 
 \begin{itemize}
   \item United Nations M49 country standard [UN\_CODE]\\
-    \url{http://unstats.un.org/unsd/methods/m49/m49.htm}
+    \url{https://unstats.un.org/unsd/methods/m49/m49.htm/}
   \item FAO country code scheme [FAOST\_CODE]\\
-    \url{http://termportal.fao.org/faonocs/appl/}
+    \url{https://termportal.fao.org/faonocs/appl/}
   \item FAO Global Administrative Unit Layers (GAUL).[ADM0\_CODE]
   \item ISO 3166-1 alpha-2 [ISO2\_CODE]\\
-    \url{http://en.wikipedia.org/wiki/ISO\_3166-1\_alpha-2}
+    \url{https://en.wikipedia.org/wiki/ISO\_3166-1\_alpha-2}
   \item ISO 3166-1 alpha-2 (World Bank) [ISO2\_WB\_CODE]\\
-    \url{http://data.worldbank.org/node/18}
+    \url{https://data.worldbank.org/}
   \item ISO 3166-1 alpha-3 [ISO3\_CODE]\\
     \url{http://en.wikipedia.org/wiki/ISO\_3166-1\_alpha-3}
   \item ISO 3166-1 alpha-3 (World Bank) [ISO3\_WB\_CODE]\\
-    \url{http://data.worldbank.org/node/18}
+    \url{https://data.worldbank.org/}
 \end{itemize}
 
 Data from any sources employ country classification listed above can be supplied to \code{mergeSYB} in order to obtain a single merged data. However, the column name of the country coding scheme is required to be the same as the name in square bracket, the responsibility of identifying the coding system lies with the user.
