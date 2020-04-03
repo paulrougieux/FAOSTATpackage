@@ -119,7 +119,7 @@ library(FAOSTAT)
 
 The latest version of the package can also be installed from the following github repository:
 
-<<Install the FAOSTAT package - GITHUB>>=
+<<Install the FAOSTAT package - git repo>>=
 if(!is.element("FAOSTAT", .packages(all.available = TRUE)))
     remotes::install_gitlab(repo="paulrougieux/faostatpackage/FAOSTAT")
 library(FAOSTAT)
