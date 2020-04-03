@@ -8,7 +8,7 @@ FAOSTAT
 This repository contains all the files to build the FAOSTAT package.
 
 # NOTE: This package is currently under development at :
-# https://github.com/paulrougieux/FAOSTATpackage 
+# https://gitlab.com/paulrougieux/faostatpackage/
 
 # WARNING 
 the FAOSTAT API on which this package was based has changed in 2017 and this
@@ -48,7 +48,7 @@ version can be installed by specifying the **ref** argument.
 
 ```r
 library(devtools)
-install_github(repo = "paulrougieux/FAOSTATpackage", subdir = "FAOSTAT")
+remotes::install_gitlab(repo = "paulrougieux/faostatpackage/FAOSTAT")
 ```
 
 Vignettes and demos are available and please make use of them:

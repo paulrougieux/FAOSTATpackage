@@ -12,7 +12,7 @@ options(replace.assign=TRUE,width=80)
 
 ## ----Install the FAOSTAT package - GITHUB-------------------------------------
 #  if(!is.element("FAOSTAT", .packages(all.available = TRUE)))
-#      remotes::install_github(repo = "paulrougieux/FAOSTATpackage", ref = "master", subdir = "FAOSTAT")
+#      remotes::install_gitlab(repo="paulrougieux/faostatpackage/FAOSTAT")
 #  library(FAOSTAT)
 
 ## ----Vignette-----------------------------------------------------------------

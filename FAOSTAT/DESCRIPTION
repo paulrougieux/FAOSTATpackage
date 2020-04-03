@@ -6,8 +6,8 @@ Date: 2020-02-03
 Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
 Maintainer: Paul Rougieux <paul.rougieux@gmail.com>
 Description: A list of functions to download statistics from FAOSTAT (database of the Food and Agricultural Organization of the United Nations) and WDI (database of the World Bank), and to perform some harmonization operations.
-URL: https://github.com/paulrougieux/FAOSTATpackage 
-BugReports: https://github.com/paulrougieux/FAOSTATpackage/issues
+URL: https://gitlab.com/paulrougieux/faostatpackage
+BugReports: https://gitlab.com/paulrougieux/faostatpackage/-/issues
 Imports:
     RJSONIO (>= 0.96-0),
     plyr (>= 1.7.1),
