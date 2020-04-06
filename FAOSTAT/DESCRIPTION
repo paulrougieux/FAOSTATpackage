@@ -6,8 +6,8 @@ Date: 2020-04-03
 Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
 Maintainer: Paul Rougieux <paul.rougieux@gmail.com>
 Description: Download Data from the FAOSTAT Database of the Food and Agricultural Organization (FAO) of the United Nations.
-    A list of functions to download statistics from FAOSTAT (FAO database <http://www.fao.org/faostat/en/#data)> 
-    and WDI (database of the World Bank <https://data.worldbank.org/)>, and to perform some harmonization operations.
+    A list of functions to download statistics from FAOSTAT (database of the FAO <http://www.fao.org/faostat/en/#data>) 
+    and WDI (database of the World Bank <https://data.worldbank.org/>), and to perform some harmonization operations.
 URL: https://gitlab.com/paulrougieux/faostatpackage
 BugReports: https://gitlab.com/paulrougieux/faostatpackage/-/issues
 Imports:
