@@ -19,9 +19,10 @@ Imports:
     ggplot2 (>= 0.9.3),
     labeling (>= 0.1)
 License: GPL (>= 2)
-LazyData: yes
+LazyData: true
 ZipData: no
 VignetteBuilder: knitr
 Suggests: knitr,
     testthat
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0.9000
+Encoding: UTF-8

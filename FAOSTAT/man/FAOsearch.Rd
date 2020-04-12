@@ -2,12 +2,27 @@
 % Please edit documentation in R/FAOsearch.R
 \name{FAOsearch}
 \alias{FAOsearch}
-\title{A function to find the domain, element and item code for a
-specific FAOSTAT query.}
+\title{Search FAOSTAT tables}
 \usage{
-FAOsearch()
+FAOsearch(
+  code = NULL,
+  dataset = NULL,
+  topic = NULL,
+  latest = FALSE,
+  full = FALSE
+)
+}
+\arguments{
+\item{code}{Specific 2-3 character code for dataset, listed as DatasetCode}
+
+\item{dataset}{Name of dataset, listed as DatasetName}
+
+\item{topic}{Dataset topic from list}
+
+\item{latest}{Sort list by latest updates}
+
+\item{full}{defaults False, return the full table with all columns}
 }
 \description{
-A function to find the domain, element and item code for a
-specific FAOSTAT query.
+Get full list of datasets from the FAOSTAT database with the Code, Dataset Name and Topic.
 }
