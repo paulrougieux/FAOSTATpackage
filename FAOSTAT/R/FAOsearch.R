@@ -14,12 +14,16 @@ FAOsearch = function(code = NULL, dataset = NULL, topic = NULL, latest = FALSE, 
 # Try downloading up to date FAO metatable, else load local cached table from /data
     wfp_identifier <- NULL
     fao_metaTable_updated = fao_metaTable_updated       #loads fao_metaTable_update to provide latest updated dataset when no connection out
-    try(wfp_identifier <- XML::xmlToDataFrame(XML::xmlParse(
+
+# Try downloading latest version from Fenix Services (host of FAOSTAT data), if fails due to connection error, use local .rdata version included with package within /data folder
+    download_from_fenix <- try(wfp_identifier <- XML::xmlToDataFrame(XML::xmlParse(
                                             "http://fenixservices.fao.org/faostat/static/bulkdownloads/datasets_E.xml"), 
                                             stringsAsFactors = F), silent = TRUE) 
-        warningCondition(print(paste("Using local cached version instead, latest update on", last(sort(fao_metaTable_updated$DateUpdate)))),
-        call = wfp_identifier <- fao_metaTable_updated)
-
+        if (class(download_from_fenix) == "try-error")   {  
+            cat(paste("Using local cached version instead, latest update on", last(sort(fao_metaTable_updated$DateUpdate)), "\n"))
+            wfp_identifier <- fao_metaTable_updated
+        }
+    
     if(!is.null(code)){
         wfp_identifier <- wfp_identifier[code == wfp_identifier[,"DatasetCode"],]}
     if(!is.null(dataset)){
