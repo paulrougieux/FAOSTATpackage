@@ -12,6 +12,52 @@ library(FAOSTAT)
 help(package = "FAOSTAT")
 vignette("FAOSTAT", package = "FAOSTAT")
 
+# Explore the FAOSTAT website to find out the data you are interested in
+# http://www.fao.org/faostat/en/#data
+# Copy a "bulk download" url, 
+# for example they are located in the right menu on the "crops" page:
+# http://www.fao.org/faostat/en/#data/QC
+
+# In this example, to avoid a warning about "examples lines wider than 100 characters"
+# the url is split in two parts: a common part 'url_bulk_site' and a .zip file name part.
+# In practice you can enter the full url directly as the `url_bulk`  argument.
+# Notice also that I have chosen to load global data in long format (normalized).
+url_bulk_site <- "http://fenixservices.fao.org/faostat/static/bulkdownloads"
+url_crops <- file.path(url_bulk_site, "Production_Crops_E_All_Data_(Normalized).zip")
+url_forestry <- file.path(url_bulk_site, "Forestry_E_All_Data_(Normalized).zip")
+
+# Create a folder to store the data
+data_folder <- "data_raw"
+dir.create(data_folder)
+
+# Download the files
+download_faostat_bulk(url_bulk = url_forestry, data_folder = data_folder)
+download_faostat_bulk(url_bulk = url_crops, data_folder = data_folder)
+
+# Read the files and assign them to data frames 
+production_crops <- read_faostat_bulk("data_raw/Production_Crops_E_All_Data_(Normalized).zip")
+forestry <- read_faostat_bulk("data_raw/Forestry_E_All_Data_(Normalized).zip")
+
+# Show the structure of the data frames
+str(production_crops)
+str(forestry)
+
+# Show the first and last year reported
+min(production_crops$year)
+max(production_crops$year)
+
+# Save data frames in the serialized RDS format for faster load times later.
+saveRDS(production_crops, "data_raw/production_crops_e_all_data.rds")
+saveRDS(forestry,"data_raw/forestry_e_all_data.rds")
+
+# Later on you can read those RDS files as follows:
+production_crops <- readRDS("data_raw/production_crops_e_all_data.rds")
+
+
+###########################################################################
+# Previous demos based on outdated functions (before 2017)
+# Kept here because some of the data manipulation might still work
+###########################################################################
 # FAOsearch function ------------------------------------------------------
 
 ## Use the interective function to search the codes.
