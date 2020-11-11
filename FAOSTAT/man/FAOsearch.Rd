@@ -9,7 +9,7 @@ FAOsearch(
   dataset = NULL,
   topic = NULL,
   latest = FALSE,
-  full = FALSE
+  full = TRUE
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ FAOsearch(
 
 \item{latest}{boolean sort list by latest updates}
 
-\item{full}{boolean, return the full table with all columns}
+\item{full}{boolean, TRUE returns the full table with all columns}
 }
 \description{
 Get full list of datasets from the FAOSTAT database with the Code, Dataset Name and Topic.
@@ -29,10 +29,10 @@ Get full list of datasets from the FAOSTAT database with the Code, Dataset Name 
 \examples{
 \dontrun{
 # Find information about all datasets
-FAOsearch()    
+fao_metadata <- FAOsearch()    
 # Find information about the forestry dataset
-FAOsearch(code="FT")    
+FAOsearch(code="FO")
 # Find information about datasets whose titles contain the word "Flows"
-FAOsearch(dataset="Flows")
+FAOsearch(dataset="Flows", full = FALSE)
 }
 }

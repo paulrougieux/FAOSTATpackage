@@ -19,7 +19,7 @@ options(replace.assign=TRUE,width=80)
 #  help(package = "FAOSTAT")
 #  vignette("FAOSTAT", package = "FAOSTAT")
 
-## -----------------------------------------------------------------------------
+## ----bulkdownload-------------------------------------------------------------
 #  url_bulk_site <- "http://fenixservices.fao.org/faostat/static/bulkdownloads"
 #  url_crops <- file.path(url_bulk_site, "Production_Crops_E_All_Data_(Normalized).zip")
 #  url_forestry <- file.path(url_bulk_site, "Forestry_E_All_Data_(Normalized).zip")
@@ -42,11 +42,25 @@ options(replace.assign=TRUE,width=80)
 #  saveRDS(forestry,"data_raw/forestry_e_all_data.rds")
 
 ## ----FAO-search, eval=FALSE---------------------------------------------------
-#  ## Use the interective function to search the codes.
-#  FAOsearch()
+#  # Create a folder to store the data
+#  data_folder <- "data_raw"
+#  dir.create(data_folder)
 #  
-#  ## Use the result of the search to download the data.
-#  test = getFAO(query = .LastSearch)
+#  # Load information about all datasets into a data frame
+#  fao_metadata <- FAOsearch()
+#  
+#  # Find information about datasets whose titles contain the word "crop" (illustrates the case insensitive search)
+#  FAOsearch(dataset="crop", full = FALSE)
+#  
+#  # Load crop production data
+#  production_crops <- get_faostat_bulk(code = "QC", data_folder = data_folder)
+#  # Show the structure of the data
+#  str(crop_production)
+#  
+#  # Cache the file i.e. save the data frame in the serialized RDS format for fast reuse later.
+#  saveRDS(production_crops, "data_raw/production_crops_e_all_data.rds")
+#  # Now you can load your local version of the data from the RDS file
+#  production_crops <- readRDS("data_raw/production_crops_e_all_data.rds")
 
 ## ----FAO-download, eval=FALSE-------------------------------------------------
 #  ## A demonstration query

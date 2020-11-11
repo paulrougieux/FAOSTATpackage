@@ -149,7 +149,9 @@ In this example,
 the url is split in two parts: a common part \verb|'url_bulk_site'| and a .zip file name part.
 In practice you can enter the full url directly as the \verb|`url_bulk`|  argument.
 Notice also that I have choosen to load global data in long format (normalized).
-<<>>=
+
+
+<<bulkdownload>>=
 url_bulk_site <- "http://fenixservices.fao.org/faostat/static/bulkdownloads"
 url_crops <- file.path(url_bulk_site, "Production_Crops_E_All_Data_(Normalized).zip")
 url_forestry <- file.path(url_bulk_site, "Forestry_E_All_Data_(Normalized).zip")
@@ -188,14 +190,28 @@ In order to access to an indicator in FAOSTAT using the API, three pieces of inf
     production/extraction rate.}
 \end{itemize}
 
-An interactive function \code{FAOsearch} has been provided for the user to identify the respective codes. An object \code{.LastSearch} will be assigned after the search and can be used by both the \code{getFAO} and \code{getFAOtoSYB} functions as the sole argument to download the data.
+An search function \code{FAOsearch} has been provided for the user to identify the respective codes.
 
 <<FAO-search, eval=FALSE>>=
-## Use the interective function to search the codes.
-FAOsearch()
+# Create a folder to store the data
+data_folder <- "data_raw"
+dir.create(data_folder)
 
-## Use the result of the search to download the data.
-test = getFAO(query = .LastSearch)
+# Load information about all datasets into a data frame
+fao_metadata <- FAOsearch()    
+
+# Find information about datasets whose titles contain the word "crop" (illustrates the case insensitive search)
+FAOsearch(dataset="crop", full = FALSE)
+
+# Load crop production data
+production_crops <- get_faostat_bulk(code = "QC", data_folder = data_folder)
+# Show the structure of the data
+str(crop_production)
+
+# Cache the file i.e. save the data frame in the serialized RDS format for fast reuse later.
+saveRDS(production_crops, "data_raw/production_crops_e_all_data.rds")
+# Now you can load your local version of the data from the RDS file
+production_crops <- readRDS("data_raw/production_crops_e_all_data.rds")
 @
 
 The \code{getFAOtoSYB} is a wrapper for the \code{getFAO} to batch download data, it supports error recovery and stores the status of the download. The function also splits the data downloaded into entity level and regional aggregates, saving time for the user. Query results from \code{FAOsearch} can also be used.

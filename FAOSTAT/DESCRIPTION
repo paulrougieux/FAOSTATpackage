@@ -19,6 +19,7 @@ Imports:
     ggplot2 (>= 0.9.3),
     labeling (>= 0.1)
 License: GPL (>= 2)
+Encoding: UTF-8
 LazyData: yes
 ZipData: no
 VignetteBuilder: knitr

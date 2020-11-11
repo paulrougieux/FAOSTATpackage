@@ -3,12 +3,15 @@
 \name{download_faostat_bulk}
 \alias{download_faostat_bulk}
 \alias{read_faostat_bulk}
+\alias{get_faostat_bulk}
 \title{Download bulk data from the faostat website
 http://www.fao.org/faostat/en/#data}
 \usage{
 download_faostat_bulk(url_bulk, data_folder)
 
 read_faostat_bulk(zip_file_name)
+
+get_faostat_bulk(code, data_folder)
 }
 \arguments{
 \item{url_bulk}{character url of the faostat bulk zip file to download}
@@ -16,19 +19,25 @@ read_faostat_bulk(zip_file_name)
 \item{data_folder}{character path of the local folder where to download the data}
 
 \item{zip_file_name}{character name of the zip file to read}
+
+\item{code}{character dataset code}
 }
 \value{
+data frame of FAOSTAT data
+
 data frame of FAOSTAT data
 }
 \description{
 \itemize{
- \item{}{\code{download_faostat_bulk()} loads data from the given url.}
- \item{}{\code{read_faostat_bulk()} Reads the data into a data frame.
+ \item{}{\code{get_faostat_bulk()} loads the given data set code and returns a data frame.}
+ \item{}{\code{download_faostat_bulk()} loads data from the given url and saves it to a compressed zip file.}
+ \item{}{\code{read_faostat_bulk()} Reads the compressed .csv .zip file into a data frame.
  More precisely it unzips the archive. 
  Reads the main csv file within the archive.
  The main file has the same name as the name of the archive. 
  Note: the zip archive might also contain metadata files about Flags and Symboles.}
 }
+In general use the \code{get_faostat_bulk()}, the other functions are lower level functions.
 Note that faostat bulk files with names ending with "normalized" are in long format 
 with a year column instead of one column for each year.
 The long format is preferable for data analysis.
@@ -46,26 +55,34 @@ The long format is preferable for data analysis.
 # In practice you can enter the full url directly as the `url_bulk`  argument.
 # Notice also that I have choosen to load global data in long format (normalized).
 url_bulk_site <- "http://fenixservices.fao.org/faostat/static/bulkdownloads"
-url_crops <- file.path(url_bulk_site, "Production_Crops_E_All_Data_(Normalized).zip")
+url_crops <- file.path(url_bulk_site, "production_crops_E_All_Data_(Normalized).zip")
 url_forestry <- file.path(url_bulk_site, "Forestry_E_All_Data_(Normalized).zip")
 
 # Create a folder to store the data
 data_folder <- "data_raw"
 dir.create(data_folder)
 
+# Load crop production data
+production_crops <- get_faostat_bulk(code = "QC", data_folder = data_folder)
+
+# Cache the file i.e. save the data frame in the serialized RDS format for fast reuse later.
+saveRDS(production_crops, "data_raw/production_crops_e_all_data.rds")
+# Now you can load your local version of the data from the RDS file
+production_crops <- readRDS("data_raw/production_crops_e_all_data.rds")
+
+# Use the lower level functions to download zip files first, 
+# then read the zip files and save them to data frames.
 # Download the files
 download_faostat_bulk(url_bulk = url_forestry, data_folder = data_folder)
 download_faostat_bulk(url_bulk = url_crops, data_folder = data_folder)
 
 # Read the files and assign them to data frames 
-production_crops <- read_faostat_bulk("data_raw/Production_Crops_E_All_Data_(Normalized).zip")
+production_crops <- read_faostat_bulk("data_raw/production_crops_E_All_Data_(Normalized).zip")
 forestry <- read_faostat_bulk("data_raw/Forestry_E_All_Data_(Normalized).zip")
  
 # Save the data frame in the serialized RDS format for fast reuse later.
 saveRDS(production_crops, "data_raw/production_crops_e_all_data.rds")
 saveRDS(forestry,"data_raw/forestry_e_all_data.rds")
-}
-\dontrun{
 }
 }
 \author{

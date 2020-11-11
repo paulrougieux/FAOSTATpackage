@@ -6,38 +6,38 @@
 #' @param dataset character name of the dataset (or part of the name), listed as DatasetName in the output data frame
 #' @param topic character topic from list
 #' @param latest boolean sort list by latest updates
-#' @param full boolean, return the full table with all columns
+#' @param full boolean, TRUE returns the full table with all columns
 #' @examples 
 #' \dontrun{
 #' # Find information about all datasets
-#' FAOsearch()    
+#' fao_metadata <- FAOsearch()    
 #' # Find information about the forestry dataset
-#' FAOsearch(code="FT")    
+#' FAOsearch(code="FO")
 #' # Find information about datasets whose titles contain the word "Flows"
-#' FAOsearch(dataset="Flows")
+#' FAOsearch(dataset="Flows", full = FALSE)
 #' }
 #' @export
+FAOsearch = function(code = NULL, dataset = NULL, topic = NULL, latest = FALSE, full = TRUE){
 
-FAOsearch = function(code = NULL, dataset = NULL, topic = NULL, latest = FALSE, full = FALSE){
+    # Download the latest metadata from Fenix Services (host of FAOSTAT data) 
+    FAOxml <- XML::xmlParse( "http://fenixservices.fao.org/faostat/static/bulkdownloads/datasets_E.xml")
+    metadata <- XML::xmlToDataFrame(FAOxml, stringsAsFactors = FALSE)
 
-# Try downloading latest version from Fenix Services (host of FAOSTAT data), if fails due to connection error, use local .rdata version included with package within /data folder
-    download_from_fenix <- try(wfp_identifier <- XML::xmlToDataFrame(XML::xmlParse(
-                                            "http://fenixservices.fao.org/faostat/static/bulkdownloads/datasets_E.xml"), 
-                                            stringsAsFactors = F), silent = TRUE) 
+    # Rename columns to lowercase
+    names(metadata) <- tolower(gsub("\\.","_",names(metadata)))
     
     if(!is.null(code)){
-        wfp_identifier <- wfp_identifier[code == wfp_identifier[,"DatasetCode"],]}
+        metadata <- metadata[code == metadata[,"datasetcode"],]}
     if(!is.null(dataset)){
-        wfp_identifier <- wfp_identifier[grep(dataset, wfp_identifier[,"DatasetName"]),]}
+        metadata <- metadata[grep(dataset, metadata[,"datasetname"], ignore.case = TRUE),]}
     if(!is.null(topic)){
-        wfp_identifier <- wfp_identifier[grep(topic, wfp_identifier[,"Topic"]),]}
+        metadata <- metadata[grep(topic, metadata[,"topic"], ignore.case = TRUE),]}
     if(latest == TRUE){
-        wfp_identifier <- wfp_identifier[order(wfp_identifier$DateUpdate, decreasing = TRUE),]}
+        metadata <- metadata[order(metadata$DateUpdate, decreasing = TRUE),]}
     if(full == FALSE){
-        return(wfp_identifier[,c("DatasetCode",
-                          "DatasetName",
-                          "DateUpdate")])}
+        return(metadata[,c("datasetcode", "datasetname", "dateupdate")])}
     if(full == TRUE){
-        return(wfp_identifier)}
+        return(metadata)}
     else(return("Invalid query"))
 }
+
