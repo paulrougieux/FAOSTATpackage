@@ -1,8 +1,8 @@
 Package: FAOSTAT
 Type: Package
 Title: Download Data from the FAOSTAT Database
-Version: 2.1.2
-Date: 2020-04-03
+Version: 2.1.3
+Date: 2020-11-11
 Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
 Maintainer: Paul Rougieux <paul.rougieux@gmail.com>
 Description: Download Data from the FAOSTAT Database of the Food and Agricultural Organization (FAO) of the United Nations.
