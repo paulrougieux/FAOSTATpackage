@@ -50,7 +50,6 @@ Also available at
 }
 \examples{
 ## pop.df = getWDI()
-
 }
 \seealso{
 \code{\link{getFAO}}, \code{\link{getWDItoSYB}},

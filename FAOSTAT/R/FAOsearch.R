@@ -1,14 +1,22 @@
-##' Search FAOSTAT tables 
-##' 
-##' Get full list of datasets from the FAOSTAT database with the Code, Dataset Name and Topic.
-##' 
-##' @param code Specific 2-3 character code for dataset, listed as DatasetCode
-##' @param dataset Name of dataset, listed as DatasetName
-##' @param topic Dataset topic from list
-##' @param latest Sort list by latest updates
-##' @param full defaults False, return the full table with all columns
-##' 
-##' @export
+#' Search FAOSTAT tables 
+#' 
+#' Get full list of datasets from the FAOSTAT database with the Code, Dataset Name and Topic.
+#' 
+#' @param code character code of the dataset, listed as DatasetCode
+#' @param dataset character name of the dataset (or part of the name), listed as DatasetName in the output data frame
+#' @param topic character topic from list
+#' @param latest boolean sort list by latest updates
+#' @param full boolean, return the full table with all columns
+#' @examples 
+#' \dontrun{
+#' # Find information about all datasets
+#' FAOsearch()    
+#' # Find information about the forestry dataset
+#' FAOsearch(code="FT")    
+#' # Find information about datasets whose titles contain the word "Flows"
+#' FAOsearch(dataset="Flows")
+#' }
+#' @export
 
 FAOsearch = function(code = NULL, dataset = NULL, topic = NULL, latest = FALSE, full = FALSE){
 
@@ -23,13 +31,13 @@ FAOsearch = function(code = NULL, dataset = NULL, topic = NULL, latest = FALSE, 
         wfp_identifier <- wfp_identifier[grep(dataset, wfp_identifier[,"DatasetName"]),]}
     if(!is.null(topic)){
         wfp_identifier <- wfp_identifier[grep(topic, wfp_identifier[,"Topic"]),]}
-    if(latest == T){
-        wfp_identifier <- wfp_identifier[order(wfp_identifier$DateUpdate, decreasing = T),]}
-    if(full == F){
+    if(latest == TRUE){
+        wfp_identifier <- wfp_identifier[order(wfp_identifier$DateUpdate, decreasing = TRUE),]}
+    if(full == FALSE){
         return(wfp_identifier[,c("DatasetCode",
                           "DatasetName",
                           "DateUpdate")])}
-    if(full == T){
+    if(full == TRUE){
         return(wfp_identifier)}
     else(return("Invalid query"))
 }
