@@ -50,11 +50,11 @@ The package can be installed from CRAN:
 install.packages("FAOSTAT")
 ```
 
-or install the develop version via the following link, different
-version can be installed by specifying the **ref** argument.
+To get the latest changes, install the development version via the following link. 
+Different versions can be installed by specifying the **ref** part of the repo argument 
+as such `username/repo[/subdir][@ref]`.
 
 ```r
-library(devtools)
 remotes::install_gitlab(repo = "paulrougieux/faostatpackage/FAOSTAT")
 ```
 
