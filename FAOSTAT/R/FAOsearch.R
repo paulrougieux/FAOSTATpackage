@@ -24,7 +24,7 @@ FAOsearch = function(code = NULL, dataset = NULL, topic = NULL, latest = FALSE, 
     if(!is.null(topic)){
         wfp_identifier <- wfp_identifier[grep(topic, wfp_identifier[,"Topic"]),]}
     if(latest == T){
-        wfp_identifier <- results[order(results$DateUpdate, decreasing = T),]}
+        wfp_identifier <- wfp_identifier[order(wfp_identifier$DateUpdate, decreasing = T),]}
     if(full == F){
         return(wfp_identifier[,c("DatasetCode",
                           "DatasetName",
