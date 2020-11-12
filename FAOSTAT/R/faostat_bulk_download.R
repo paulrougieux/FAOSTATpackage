@@ -1,5 +1,6 @@
 #' @title Download bulk data from the faostat website
 #' http://www.fao.org/faostat/en/#data
+#'
 #' @description 
 #' \itemize{
 #'  \item{}{\code{get_faostat_bulk()} loads the given data set code and returns a data frame.}
@@ -10,21 +11,23 @@
 #'  The main file has the same name as the name of the archive. 
 #'  Note: the zip archive might also contain metadata files about Flags and Symboles.}
 #' }
-#' In general you should load the data with \code{get_faostat_bulk()},
-#' the other functions are lower level functions.
+#' In general you should load the data with the function \code{get_faostat_bulk()} and a dataset code.
+#' The other functions are lower level functions that you can use as an alternative. 
+#' You can also explore the datasets and find their download URLs
+#' on the FAOSTAT website. Explore the website to find out the data you are interested in
+#' \url{http://www.fao.org/faostat/en/#data}
+#' Copy a "bulk download" url, 
+#' for example they are located in the right menu on the "crops" page
+#' \url{http://www.fao.org/faostat/en/#data/QC}
 #' Note that faostat bulk files with names ending with "normalized" are in long format 
 #' with a year column instead of one column for each year.
-#' The long format is preferable for data analysis. 
+#' The long format is preferable for data analysis and this is the format 
+#' returned by the  \code{get_faostat_bulk()} function. 
 #' @author Paul Rougieux
 #' @param url_bulk character url of the faostat bulk zip file to download
 #' @param data_folder character path of the local folder where to download the data
 #' @examples 
 #' \dontrun{
-#' # Explore the FAOSTAT website to find out the data you are interested in
-#' # http://www.fao.org/faostat/en/#data
-#' # Copy a "bulk download" url, 
-#' # for example they are located in the right menu on the "crops" page:
-#' # http://www.fao.org/faostat/en/#data/QC
 #'
 #' # Create a folder to store the data
 #' data_folder <- "data_raw"
@@ -37,6 +40,7 @@
 #' saveRDS(production_crops, "data_raw/production_crops_e_all_data.rds")
 #' # Now you can load your local version of the data from the RDS file
 #' production_crops <- readRDS("data_raw/production_crops_e_all_data.rds")
+#'
 #'
 #' # Use the lower level functions to download zip files, 
 #' # then read the zip files in separate function calls.

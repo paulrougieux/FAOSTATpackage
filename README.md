@@ -13,8 +13,6 @@ This repository contains all the files to build the FAOSTAT package.
 You can report issues on the [gitlab issue 
 page](https://gitlab.com/paulrougieux/faostatpackage/-/issues). 
 
-
-
 # WARNING 
 
 The FAOSTAT API on which this package was based has changed in 2017 and this
