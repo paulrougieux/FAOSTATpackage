@@ -28,7 +28,7 @@
 #'
 #' @seealso \code{\link{getFAO}}, \code{\link{getWDItoSYB}},
 #' \code{\link{getFAOtoSYB}} 
-#' and the wbstats package \url{https://cran.r-project.org/web/packages/wbstats/} for an implementation with many more features.
+#' and the wbstats package \url{https://cran.r-project.org/package=wbstats} for an implementation with many more features.
 #' @examples
 #' ## pop.df = getWDI()
 #' @export
