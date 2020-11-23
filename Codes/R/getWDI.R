@@ -25,7 +25,7 @@
 ## source:
 ## http://lamages.blogspot.it/2011/09/setting-initial-view-of-motion-chart-in.html
 
-## TODO (Michael): Investigate why sometimes ISO2 is used and
+## WONTFIX (Michael): Investigate why sometimes ISO2 is used and
 ##                 sometiems ISO3 is used.
 getWDI = function(indicator = "SP.POP.TOTL", name = NULL,
                   startDate = 1960, endDate = format(Sys.Date(), "%Y"),

@@ -59,5 +59,5 @@ getWDI = function(indicator = "SP.POP.TOTL", name = NULL,
     return(wbData)
 }
 
-# TODO (Michael): Investigate why sometimes ISO2 is used and
+# WONTFIX (Michael): Investigate why sometimes ISO2 is used and
 #                 sometiems ISO3 is used.
