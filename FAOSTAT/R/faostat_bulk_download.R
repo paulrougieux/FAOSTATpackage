@@ -71,17 +71,22 @@ download_faostat_bulk <- function(url_bulk, data_folder){
 
 #' @rdname download_faostat_bulk
 #' @param zip_file_name character name of the zip file to read
-#' @return data frame of FAOSTAT data 
+#' @param encoding parameter passed to `read.csv`.
+#' @return data frame of FAOSTAT data
 #' @export
-read_faostat_bulk <- function(zip_file_name){
+read_faostat_bulk <- function(zip_file_name, encoding="latin1"){
     # The main csv file shares the name of the archive
     csv_file_name <- gsub(".zip$",".csv", basename(zip_file_name))
     # Read the csv file within the zip file
-    df <- read.csv(unz(zip_file_name, csv_file_name), stringsAsFactors = FALSE)
+    df <- read.csv(unz(zip_file_name, csv_file_name),
+                   stringsAsFactors = FALSE,
+                   encoding=encoding)
     # Rename columns to lowercase
     names(df) <- tolower(gsub("\\.","_",names(df)))
     return(df)
 }
+
+
 
 #' @rdname download_faostat_bulk
 #' @param code character dataset code
