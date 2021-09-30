@@ -9,7 +9,7 @@ http://www.fao.org/faostat/en/#data}
 \usage{
 download_faostat_bulk(url_bulk, data_folder)
 
-read_faostat_bulk(zip_file_name)
+read_faostat_bulk(zip_file_name, encoding = "latin1", rename_element = TRUE)
 
 get_faostat_bulk(code, data_folder)
 }
@@ -19,6 +19,8 @@ get_faostat_bulk(code, data_folder)
 \item{data_folder}{character path of the local folder where to download the data}
 
 \item{zip_file_name}{character name of the zip file to read}
+
+\item{encoding}{parameter passed to `read.csv`.}
 
 \item{code}{character dataset code}
 }

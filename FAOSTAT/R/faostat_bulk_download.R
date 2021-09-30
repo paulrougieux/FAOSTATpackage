@@ -72,20 +72,29 @@ download_faostat_bulk <- function(url_bulk, data_folder){
 #' @rdname download_faostat_bulk
 #' @param zip_file_name character name of the zip file to read
 #' @param encoding parameter passed to `read.csv`.
+#' @param rename_element
 #' @return data frame of FAOSTAT data
 #' @export
-read_faostat_bulk <- function(zip_file_name, encoding="latin1"){
+read_faostat_bulk <- function(zip_file_name, 
+                              encoding="latin1", 
+                              rename_element=TRUE){
     # The main csv file shares the name of the archive
     csv_file_name <- gsub(".zip$",".csv", basename(zip_file_name))
     # Read the csv file within the zip file
     df <- read.csv(unz(zip_file_name, csv_file_name),
                    stringsAsFactors = FALSE,
                    encoding=encoding)
-    # Rename columns to lowercase
-    names(df) <- tolower(gsub("\\.","_",names(df)))
+    # Rename columns to lower case 
+    # and replace non alphanumeric characters by underscores.
+    names(df) <- gsub("[^[:alnum:]]", "_", tolower(names(df)))
+    if(rename_element){
+        # Rename the element column to snake case. To facilitate the use of elements
+        # as column names later when the data frame gets reshaped to a wider format.
+        # Replace non alphanumeric characters by underscores.
+        df$element <- gsub("[^[:alnum:]]","_",tolower(df$element))
+    }
     return(df)
 }
-
 
 
 #' @rdname download_faostat_bulk

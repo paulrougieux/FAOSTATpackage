@@ -10,6 +10,6 @@
 *.tar.gz
 *.Rcheck/*
 *.Rproj
-
+*tags
 # Ignore downloaded data
 /FAOSTAT/data_raw/*
