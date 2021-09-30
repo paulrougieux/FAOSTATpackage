@@ -10,7 +10,13 @@ Description: Download Data from the FAOSTAT Database of the Food and Agricultura
     and WDI (database of the World Bank <https://data.worldbank.org/>), and to perform some harmonization operations.
 URL: https://gitlab.com/paulrougieux/faostatpackage
 BugReports: https://gitlab.com/paulrougieux/faostatpackage/-/issues
-Imports:
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: yes
+ZipData: no
+VignetteBuilder: knitr
+Suggests: knitr,
+    testthat
     RJSONIO (>= 0.96-0),
     plyr (>= 1.7.1),
     data.table (>= 1.8.2),
@@ -19,11 +25,4 @@ Imports:
     ggplot2 (>= 0.9.3),
     labeling (>= 0.1),
     XML (>= 3.0)
-License: GPL (>= 2)
-Encoding: UTF-8
-LazyData: yes
-ZipData: no
-VignetteBuilder: knitr
-Suggests: knitr,
-    testthat
 RoxygenNote: 7.0.2
