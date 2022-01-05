@@ -1,5 +1,5 @@
 #' @title Download bulk data from the faostat website
-#' http://www.fao.org/faostat/en/#data
+#' https://www.fao.org/faostat/en/#data
 #'
 #' @description 
 #' \itemize{
@@ -15,10 +15,10 @@
 #' The other functions are lower level functions that you can use as an alternative. 
 #' You can also explore the datasets and find their download URLs
 #' on the FAOSTAT website. Explore the website to find out the data you are interested in
-#' \url{http://www.fao.org/faostat/en/#data}
+#' \url{https://www.fao.org/faostat/en/#data}
 #' Copy a "bulk download" url, 
 #' for example they are located in the right menu on the "crops" page
-#' \url{http://www.fao.org/faostat/en/#data/QC}
+#' \url{https://www.fao.org/faostat/en/#data/QC}
 #' Note that faostat bulk files with names ending with "normalized" are in long format 
 #' with a year column instead of one column for each year.
 #' The long format is preferable for data analysis and this is the format 
@@ -48,7 +48,7 @@
 #' # the url is split in two parts: a common part 'url_bulk_site' and a .zip file name part.
 #' # In practice you can enter the full url directly as the `url_bulk`  argument.
 #' # Notice also that I have choosen to load global data in long format (normalized).
-#' url_bulk_site <- "http://fenixservices.fao.org/faostat/static/bulkdownloads"
+#' url_bulk_site <- "https://fenixservices.fao.org/faostat/static/bulkdownloads"
 #' url_crops <- file.path(url_bulk_site, "crop_production_E_All_Data_(Normalized).zip")
 #' url_forestry <- file.path(url_bulk_site, "Forestry_E_All_Data_(Normalized).zip")
 #' # Download the files
