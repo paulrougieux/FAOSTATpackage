@@ -72,7 +72,10 @@ download_faostat_bulk <- function(url_bulk, data_folder){
 #' @rdname download_faostat_bulk
 #' @param zip_file_name character name of the zip file to read
 #' @param encoding parameter passed to `read.csv`.
-#' @param rename_element
+#' @param rename_element boolean Rename the element column to snake case. To
+#' facilitate the use of elements as column names later when the data frame
+#' gets reshaped to a wider format. Replace non alphanumeric characters by
+#' underscores.
 #' @return data frame of FAOSTAT data
 #' @export
 read_faostat_bulk <- function(zip_file_name, 
@@ -88,9 +91,6 @@ read_faostat_bulk <- function(zip_file_name,
     # and replace non alphanumeric characters by underscores.
     names(df) <- gsub("[^[:alnum:]]", "_", tolower(names(df)))
     if(rename_element){
-        # Rename the element column to snake case. To facilitate the use of elements
-        # as column names later when the data frame gets reshaped to a wider format.
-        # Replace non alphanumeric characters by underscores.
         df$element <- gsub("[^[:alnum:]]","_",tolower(df$element))
     }
     return(df)
