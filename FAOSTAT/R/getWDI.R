@@ -19,10 +19,10 @@
 #' \url{https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation}
 #' "Version 2 (V2) of the Indicators API has been released and replaces V1 of the API. 
 #' V1 API calls will no longer be supported. To use the V2 API, you must place v2 in the call. 
-#' For example: \url{http://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL}.
+#' For example: \url{https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL}.
 #' 
 #' Original (2011) source by Markus Gesmann:
-#' \url{http://lamages.blogspot.it/2011/09/setting-initial-view-of-motion-chart-in.html}
+#' \url{https://lamages.blogspot.it/2011/09/setting-initial-view-of-motion-chart-in.html}
 #' Also available at 
 #' \url{https://www.magesblog.com/post/2011-09-25-accessing-and-plotting-world-bank-data/}
 #'
@@ -37,7 +37,7 @@ getWDI = function(indicator = "SP.POP.TOTL", name = NULL,
                   printURL = FALSE, outputFormat = "wide"){
     if(is.null(name))
         name = indicator
-    url = paste("http://api.worldbank.org/v2/countries/all/indicators/", indicator,
+    url = paste("https://api.worldbank.org/v2/countries/all/indicators/", indicator,
                 "?date=", startDate, ":", endDate,
                 "&format=json&per_page=30000", sep = "")
     if(printURL)
