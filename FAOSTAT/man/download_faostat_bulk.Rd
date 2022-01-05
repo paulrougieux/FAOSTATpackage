@@ -22,6 +22,11 @@ get_faostat_bulk(code, data_folder)
 
 \item{encoding}{parameter passed to `read.csv`.}
 
+\item{rename_element}{boolean Rename the element column to snake case. To
+facilitate the use of elements as column names later when the data frame
+gets reshaped to a wider format. Replace non alphanumeric characters by
+underscores.}
+
 \item{code}{character dataset code}
 }
 \value{
