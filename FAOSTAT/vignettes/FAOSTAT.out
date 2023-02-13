@@ -7,6 +7,7 @@
 \BOOKMARK [2][-]{Subsection.4.0.Identification problem.2}{Identification problem}{Section.3.Merge data from different sources.1}% 7
 \BOOKMARK [2][-]{Subsection.4.1.Representation problem.2}{Representation problem}{Section.3.Merge data from different sources.1}% 8
 \BOOKMARK [2][-]{Subsection.4.2.Transition problem.2}{Transition problem}{Section.3.Merge data from different sources.1}% 9
-\BOOKMARK [1][-]{Section.4.Scale data to basic unit.1}{Scale data to basic unit}{}% 10
-\BOOKMARK [1][-]{Section.5.Computing growth, and other derivatives.1}{Computing growth, and other derivatives}{}% 11
-\BOOKMARK [1][-]{Section.6.Compute aggregates.1}{Compute aggregates}{}% 12
+\BOOKMARK [1][-]{Section.4.Reshape data to the wide "non normalized" format.1}{Reshape data to the wide "non normalized" format}{}% 10
+\BOOKMARK [1][-]{Section.5.Scale data to basic unit.1}{Scale data to basic unit}{}% 11
+\BOOKMARK [1][-]{Section.6.Computing growth, and other derivatives.1}{Computing growth, and other derivatives}{}% 12
+\BOOKMARK [1][-]{Section.7.Compute aggregates.1}{Compute aggregates}{}% 13

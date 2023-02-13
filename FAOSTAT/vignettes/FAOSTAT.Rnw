@@ -145,7 +145,7 @@ The metadata returned by \code{FAOsearch} describes more than seventy datasets. 
 Once you have found the dataset code you are interested in, enter it as the code argument to the \code{get_faostat_bulk()} function. 
 That function will load the corresponding data into a data frame as illustrated in the sample code below.
 
-<<FAO-search, eval=FALSE>>=
+<<FAO-search1, eval=FALSE>>=
 library(FAOSTAT)
 # Create a folder to store the data
 data_folder <- "data_raw"
@@ -300,7 +300,7 @@ In tidy data:
 
 In case you want the data in long format, you can reshape it with:
 
-<<FAO-search, eval=FALSE>>=
+<<FAO-search2, eval=FALSE>>=
 library(tidyr)
 # Reuse the data folder created above
 data_folder <- "data_raw"
