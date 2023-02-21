@@ -19,6 +19,12 @@
 #' @param base_url character. Base URL for API
 #' 
 #' @return data.frame in long format (wide not yet supported). Contains attributes for the URL and parameters used.
+#' 
+#' @examples
+#' 
+#' # Get data for Cropland (6620) Area (5110) in Antigua and Barbuda (8), 2017
+#' getFAO("8", "5110", "6620", "2017")
+#' 
 #' @export
 
 getFAO <- function(area_codes, element_codes, item_codes, year_codes, 
@@ -36,6 +42,7 @@ getFAO <- function(area_codes, element_codes, item_codes, year_codes,
   
   language = match.arg(language, several.ok = FALSE)
   area_format = match.arg(area_format, several.ok = FALSE)
+  item_format = match.arg(item_format, several.ok = FALSE)
   
   area_coll     = coll(area_codes)
   item_coll     = coll(item_codes)
@@ -67,7 +74,7 @@ getFAO <- function(area_codes, element_codes, item_codes, year_codes,
   
   final_url <- paste0(base_url, language, "/data/", dataset)
   
-  resp <- GET(final_url, query = params)
+  resp <- httr::GET(final_url, query = params)
   
   
   if (status_code(resp) != 200) {

@@ -2,62 +2,58 @@
 % Please edit documentation in R/getFAO.R
 \name{getFAO}
 \alias{getFAO}
-\title{Access to FAO FAOSTAT API.}
+\title{Access FAOSTAT API}
 \usage{
 getFAO(
-  name = NULL,
-  domainCode = "RL",
-  elementCode = 5110,
-  itemCode = 6621,
-  query,
-  printURL = FALSE,
-  useCHMT = TRUE,
-  outputFormat = "wide",
-  returnNames = FALSE,
-  returnFlags = FALSE,
-  yearRange = NULL,
-  countrySet = NULL
+  area_codes,
+  element_codes,
+  item_codes,
+  year_codes,
+  area_format = c("M49", "FAO", "ISO2", "ISO3"),
+  item_format = c("CPC", "FAO"),
+  dataset = "RL",
+  metadata_cols = c("codes", "units", "flags", "notes"),
+  include_na = FALSE,
+  language = c("en", "fr", "es"),
+  base_url = "https://fenixservices.fao.org/faostat/api/v1/"
 )
 }
 \arguments{
-\item{name}{The name to be given to the variable.}
+\item{area_codes}{character. FAOSTAT area codes}
 
-\item{domainCode}{The domain of the data.}
+\item{element_codes}{character. FAOSTAT element codes}
 
-\item{elementCode}{The code of the element.}
+\item{item_codes}{character. FAOSTAT item codes}
 
-\item{itemCode}{The code of the specific item.}
+\item{area_format}{character. Desired area code type in output (input still
+needs to use FAOSTAT codes)}
 
-\item{query}{The object created if using the FAOsearch function.}
+\item{item_format}{character. Item code}
 
-\item{printURL}{Whether the url link for the data should be printed.}
+\item{dataset}{character. FAO dataset desired, e.g. RL, FBS}
 
-\item{useCHMT}{logical, whether the CHMT function should be
-applied to avoid double counting of China.}
+\item{metadata_cols}{character. Metadata columns to include in output}
 
-\item{outputFormat}{The format of the data, can be 'long' or 'wide'.}
+\item{include_na}{logical. Whether to include NAs for combinations of dimensions with no data}
 
-\item{returnNames}{Logical, should the area, the element and the
-item names be reported?.}
+\item{language}{character. 2 letter language code for output labels}
 
-\item{returnFlags, }{Logical, whether the flags should be
-returned. Only work with outputFormat long.}
+\item{base_url}{character. Base URL for API}
 
-\item{yearRange}{A numeric vector containing the years to be downloaded.}
-
-\item{countrySet}{The FAOSTAT codes of those countries to be downloaded.}
+\item{year}{character. Vector of desired years}
 }
 \value{
-Outputs a data frame containing the specified data.
+data.frame in long format (wide not yet supported). Contains attributes for the URL and parameters used.
 }
 \description{
-A function to access FAOSTAT data through the FAOSTAT API.
+Uses the same functionality as the web interface to pull data from the
+FAOSTAT API. Contains most of its parameters. Currently only works for
+datasets that have area, item, element and year. Values for Chinese countries
+are not yet deduplicated.
 }
-\details{
-Need to account for multiple itemCode, currently only support one
-single variable.
-}
-\seealso{
-\code{\link{getWDI}}, \code{\link{getWDItoSYB}},
-\code{\link{getFAOtoSYB}}, \code{\link{FAOsearch}}
+\examples{
+
+# Get data for Cropland (6620) Area (5110) in Antigua and Barbuda (8), 2017
+getFAO("8", "5110", "6620", "2017")
+
 }

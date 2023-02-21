@@ -17,5 +17,6 @@
 ##' @import classInt
 ##' @import ggplot2
 ##' @import labeling
+##' @import httr
 ##'
 NULL
