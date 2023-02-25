@@ -66,7 +66,7 @@ read_fao <- function(area_codes, element_codes, item_codes, year_codes,
     # page_number = 1,   # For pagination
     # page_size = 100,   # Number of records for pagination
     datasource = "DB4",
-    output_type = "objects" #csv is also a possibility
+    output_type = "csv" #objects returns a json object
     #latest_year = 1 # Will give the latest year available
   )
   
@@ -84,18 +84,11 @@ read_fao <- function(area_codes, element_codes, item_codes, year_codes,
     stop("Request failed")
   }
   
-  resp_content <- content(resp)
+  resp_content <- content(resp, type = "text", encoding = "UTF-8")
   
-  resp_list <- lapply(resp_content$data, as.data.frame)
-  
-  ret <- do.call(rbind, resp_list)
+  ret <- fread(text = resp_content)
   
   #TODO Add China replacement function 
-  #TODO Replace this kludgy fix with something that provides an empty table
-  if(is.null(ret)){
-    stop("Data is empty")
-  }
-  
   attr(ret, "url") <- final_url
   attr(ret, "params") <- params
   
