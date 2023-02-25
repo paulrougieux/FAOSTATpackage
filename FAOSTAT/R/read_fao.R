@@ -16,7 +16,6 @@
 #' @param metadata_cols character. Metadata columns to include in output
 #' @param include_na logical. Whether to include NAs for combinations of dimensions with no data
 #' @param language character. 2 letter language code for output labels
-#' @param base_url character. Base URL for API
 #' 
 #' @return data.frame in long format (wide not yet supported). Contains attributes for the URL and parameters used.
 #' 
@@ -33,8 +32,7 @@ read_fao <- function(area_codes, element_codes, item_codes, year_codes,
                    dataset = "RL", 
                    metadata_cols = c("codes", "units", "flags", "notes"),
                    include_na = FALSE,
-                   language = c("en", "fr", "es"),
-                   base_url = "https://fenixservices.fao.org/faostat/api/v1/"){
+                   language = c("en", "fr", "es")){
   
   coll <- function(string){
     paste0(string, collapse = ",")
@@ -72,24 +70,16 @@ read_fao <- function(area_codes, element_codes, item_codes, year_codes,
   
   #Call to check for no records then get data
   
-  final_url <- paste0(base_url, language, "/data/", dataset)
+  final_endpoint <- paste0("/data/", dataset)
   
-  resp <- httr::GET(final_url, query = params)
-  
-  
-  if (status_code(resp) != 200) {
-    if (status_code(resp) == 404) {
-      stop("Error 404 - resource not found. Is something wrong with the URL?")
-    }
-    stop("Request failed")
-  }
+  resp <- get_fao(final_endpoint, language = language, params = params)
   
   resp_content <- content(resp, type = "text", encoding = "UTF-8")
   
   ret <- fread(text = resp_content)
   
   #TODO Add China replacement function 
-  attr(ret, "url") <- final_url
+  attr(ret, "url") <- resp$url
   attr(ret, "params") <- params
   
   return(ret)
