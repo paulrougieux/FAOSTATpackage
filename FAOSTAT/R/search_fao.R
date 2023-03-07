@@ -17,7 +17,14 @@
 #' FAOsearch(dataset="Flows", full = FALSE)
 #' }
 #' @export
-FAOsearch = function(code = NULL, dataset = NULL, topic = NULL, latest = FALSE, full = TRUE){
+
+
+search_fao = function(code = NULL, dataset = NULL, topic = NULL, latest = FALSE, full = TRUE){
+    
+    if (deparse(match.call()[[1]]) == "FAOsearch") {
+        .Deprecated("search_fao", msg = "FAOsearch has deprecated been replaced by search_fao as the old API doesn't work anymore. 
+                search_fao was called instead")
+    }
     # Download the latest metadata from Fenix Services (host of FAOSTAT data) 
     xml_url <- "https://fenixservices.fao.org/faostat/static/bulkdownloads/datasets_E.xml"
     # Temporary copy of the xml metadata file, valid for this R session
@@ -50,3 +57,4 @@ FAOsearch = function(code = NULL, dataset = NULL, topic = NULL, latest = FALSE, 
     else(return("Invalid query"))
 }
 
+FAOsearch <- search_fao

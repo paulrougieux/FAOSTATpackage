@@ -34,6 +34,11 @@ read_fao <- function(area_codes, element_codes, item_codes, year_codes,
                    include_na = FALSE,
                    language = c("en", "fr", "es")){
   
+  if (deparse(match.call()[[1]]) == "getFAO") {
+    .Deprecated("read_fao", msg = "getFAO has deprecated been replaced by read_fao as the old API doesn't work anymore. 
+                read_fao was called instead")
+  }
+  
   coll <- function(string){
     paste0(string, collapse = ",")
   }
