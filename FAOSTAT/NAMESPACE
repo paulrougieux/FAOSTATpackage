@@ -2,9 +2,9 @@
 
 export(Aggregation)
 export(CHMT)
-export(FAOcheck)
 export(FAOsearch)
 export(chConstruct)
+export(check_country_overlap)
 export(chgr)
 export(constructSYB)
 export(download_faostat_bulk)
