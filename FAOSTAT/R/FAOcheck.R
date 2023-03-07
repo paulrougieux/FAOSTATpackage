@@ -13,14 +13,14 @@
 ##'
 ##' @export
 ##' @examples
-##' ## test.df = 
-##' ##    data.frame(FAOST_CODE = rep(c(51,167,199), each = 3), 
-##' ##      Year = rep(c(1990:1992), 3),
-##' ##      Value = c(c(3,4,4), c(2,2,2), c(1,2,NA)))
-##' ## check_country_overlap(var = "Value", data = test.df, type = "overlap", take = "simpleCheck")
-##' ## check_country_overlap(var = "Value", data = test.df, type = "overlap", take = "takeNew")
-##' ## check_country_overlap(var = "Value", data = test.df, type = "overlap", take = "takeOld")
-##' ## check_country_overlap(var = "Value", data = test.df, type = "overlap", take = "complete")
+##' test.df = 
+##'    data.frame(FAOST_CODE = rep(c(51,167,199), each = 3), 
+##'   Year = rep(c(1990:1992), 3),
+##'   Value = c(c(3,4,4), c(2,2,2), c(1,2,NA)))
+##' check_country_overlap(var = "Value", data = test.df, type = "overlap", take = "simpleCheck")
+##' check_country_overlap(var = "Value", data = test.df, type = "overlap", take = "takeNew")
+##' check_country_overlap(var = "Value", data = test.df, type = "overlap", take = "takeOld")
+##' check_country_overlap(var = "Value", data = test.df, type = "overlap", take = "complete")
 
 check_country_overlap = function(var, year = "Year", data, 
                     type = c("overlap", "multiChina"),
