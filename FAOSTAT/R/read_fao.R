@@ -8,7 +8,7 @@
 #' @param area_codes character. FAOSTAT area codes
 #' @param element_codes character. FAOSTAT element codes
 #' @param item_codes character. FAOSTAT item codes
-#' @param year character. Vector of desired years
+#' @param year_codes character. Vector of desired years
 #' @param area_format character. Desired area code type in output (input still
 #'   needs to use FAOSTAT codes)
 #' @param item_format character. Item code

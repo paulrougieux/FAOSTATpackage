@@ -38,6 +38,8 @@ getFAO(
 
 \item{item_codes}{character. FAOSTAT item codes}
 
+\item{year_codes}{character. Vector of desired years}
+
 \item{area_format}{character. Desired area code type in output (input still
 needs to use FAOSTAT codes)}
 
@@ -50,8 +52,6 @@ needs to use FAOSTAT codes)}
 \item{include_na}{logical. Whether to include NAs for combinations of dimensions with no data}
 
 \item{language}{character. 2 letter language code for output labels}
-
-\item{year}{character. Vector of desired years}
 }
 \value{
 data.frame in long format (wide not yet supported). Contains attributes for the URL and parameters used.
