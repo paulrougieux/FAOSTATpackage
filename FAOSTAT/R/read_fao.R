@@ -22,7 +22,7 @@
 #' @examples
 #' 
 #' # Get data for Cropland (6620) Area (5110) in Antigua and Barbuda (8), 2017
-#' getFAO("8", "5110", "6620", "2017")
+#' df = read_fao(area_codes = "8", element_codes = "5110", item_codes = "6620", year_codes = "2017")
 #' 
 #' @export
 
