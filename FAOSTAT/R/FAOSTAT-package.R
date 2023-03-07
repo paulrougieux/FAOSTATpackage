@@ -15,7 +15,6 @@
 ##' @import data.table
 ##' @import MASS
 ##' @import classInt
-##' @import ggplot2
 ##' @import labeling
 ##' @import httr
 ##'

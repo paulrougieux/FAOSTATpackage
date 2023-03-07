@@ -16,7 +16,6 @@ Imports:
     data.table (>= 1.8.2),
     MASS (>= 7.3-22),
     classInt (>= 0.1-19),
-    ggplot2 (>= 0.9.3),
     labeling (>= 0.1),
     XML (>= 3.0),
     httr (>= 1.0)
