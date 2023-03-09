@@ -42,7 +42,7 @@ data frame of FAOSTAT data
  More precisely it unzips the archive. 
  Reads the main csv file within the archive.
  The main file has the same name as the name of the archive. 
- Note: the zip archive might also contain metadata files about Flags and Symboles.}
+ Note: the zip archive might also contain metadata files about Flags and Symbols.}
 }
 In general you should load the data with the function \code{get_faostat_bulk()} and a dataset code.
 The other functions are lower level functions that you can use as an alternative. 

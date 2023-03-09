@@ -16,6 +16,10 @@ FAOsearch(code, dataset, latest = TRUE)
 
 \item{latest}{logical. Sort list by latest updates}
 }
+\value{
+A data.frame with the columns:
+ code, label, date_update, note_update, release_current, state_current, year_current, release_next, state_next, year_next
+}
 \description{
 Get full list of datasets from the FAOSTAT database with the Code, dataset name and updates.
 }
@@ -28,4 +32,5 @@ search_datasets(code="FO")
 # Find information about datasets whose titles contain the word "Flows"
 search_datasets(dataset="Flows")
 }
+
 }
