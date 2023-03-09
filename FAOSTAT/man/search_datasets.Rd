@@ -5,28 +5,35 @@
 \alias{FAOsearch}
 \title{Search FAOSTAT domains, datasets, elements, indicators, and items}
 \usage{
-search_datasets(code, dataset, latest = TRUE)
+search_datasets(code, dataset, latest = TRUE, reset_cache = FALSE)
 
-FAOsearch(code, dataset, latest = TRUE)
+FAOsearch(code, dataset, latest = TRUE, reset_cache = FALSE)
 }
 \arguments{
 \item{code}{character. Codes of desired datasets, listed as DatasetCode}
 
-\item{dataset}{character. Name of the dataset (or part of the name), listed as label in the output data frame}
+\item{dataset}{character. Name of the datasets, listed as label in the output
+data frame. Can take regular expressions.}
 
 \item{latest}{logical. Sort list by latest updates}
+
+\item{reset_cache}{logical. By default, data is saved after a first run and
+reused. Setting this to true causes the function to pull data from FAO
+again}
 }
 \value{
-A data.frame with the columns:
- code, label, date_update, note_update, release_current, state_current, year_current, release_next, state_next, year_next
+A data.frame with the columns: code, label, date_update, note_update,
+  release_current, state_current, year_current, release_next, state_next,
+  year_next
 }
 \description{
-Get full list of datasets from the FAOSTAT database with the Code, dataset name and updates.
+Get full list of datasets from the FAOSTAT database with the Code, dataset
+name and updates.
 }
 \examples{
 \dontrun{
 # Find information about all datasets
-fao_metadata <- search_datasets()    
+fao_metadata <- search_datasets()
 # Find information about the forestry dataset
 search_datasets(code="FO")
 # Find information about datasets whose titles contain the word "Flows"

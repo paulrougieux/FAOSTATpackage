@@ -18,4 +18,5 @@
 ##' @import labeling
 ##' @import httr
 ##'
-NULL
+
+.FAOSTATenv <- new.env()
