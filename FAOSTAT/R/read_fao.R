@@ -81,7 +81,7 @@ read_fao <- function(area_codes, element_codes, item_codes, year_codes,
   
   resp_content <- content(resp, type = "text", encoding = "UTF-8")
   
-  ret <- fread(text = resp_content)
+  ret <- as.data.table(fread(text = resp_content))
   
   #TODO Add China replacement function 
   attr(ret, "url") <- resp$url
