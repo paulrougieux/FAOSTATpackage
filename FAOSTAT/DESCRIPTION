@@ -17,7 +17,6 @@ Imports:
     MASS (>= 7.3-22),
     classInt (>= 0.1-19),
     labeling (>= 0.1),
-    XML (>= 3.0),
     httr (>= 1.0)
 License: GPL (>= 2)
 Encoding: UTF-8
