@@ -1,23 +1,23 @@
 #' Search FAOSTAT domains, datasets, elements, indicators, and items 
 #' 
-#' Get full list of datasets from the FAOSTAT database with the Code, Dataset Name and Topic.
+#' Get full list of datasets from the FAOSTAT database with the Code, dataset name and updates.
 #' 
-#' @param code character code of the dataset, listed as DatasetCode
-#' @param dataset character name of the dataset (or part of the name), listed as DatasetName in the output data frame
-#' @param topic character topic from list
-#' @param latest boolean sort list by latest updates
-#' @param full boolean, TRUE returns the full table with all columns
+#' @param code character. Codes of desired datasets, listed as DatasetCode
+#' @param dataset character. Name of the dataset (or part of the name), listed as label in the output data frame
+#' @param latest logical. Sort list by latest updates
 #' @examples 
 #' \dontrun{
 #' # Find information about all datasets
-#' fao_metadata <- FAOsearch()    
+#' fao_metadata <- search_datasets()    
 #' # Find information about the forestry dataset
-#' FAOsearch(code="FO")
+#' search_datasets(code="FO")
 #' # Find information about datasets whose titles contain the word "Flows"
-#' FAOsearch(dataset="Flows", full = FALSE)
+#' search_datasets(dataset="Flows")
 #' }
-#' @export search_datasets 
-#' @export FAOsearch
+#' 
+#' @return A data.frame with the columns:
+#'  code, label, date_update, note_update, release_current, state_current, year_current, release_next, state_next, year_next
+#' @export 
 
  search_datasets = function(code, dataset, latest = TRUE){
     
@@ -26,6 +26,11 @@
                 search_datasets was called instead")
     }
     
+     if(length(dataset > 1)){
+         warning("More than 1 values was supplied to dataset, only the first will be used")
+         dataset <- dataset[1]
+     }
+     
     search_data <- get_fao("/domains")
     
     data <- rbindlist(content(search_data)[["data"]], fill = TRUE)
@@ -35,7 +40,7 @@
         data <- data[code %chin% get("code", envir = parent.frame()),]
     }
     if(!missing(dataset)){
-        data <- data[dataset %chin% get("dataset", envir = parent.frame()),]
+        data <- data[grepl(get("dataset", envir = parent.frame()), dataset),]
     }
         
     if(latest){
@@ -47,6 +52,10 @@
     attr(data, "query_metadata") <- metadata
     
     return(data)
-}
+ }
+ 
+ #' @rdname search_datasets
+ #' @export
+ #' 
 
 FAOsearch <- search_datasets

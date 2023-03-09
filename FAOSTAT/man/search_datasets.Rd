@@ -2,31 +2,30 @@
 % Please edit documentation in R/search_datasets.R
 \name{search_datasets}
 \alias{search_datasets}
+\alias{FAOsearch}
 \title{Search FAOSTAT domains, datasets, elements, indicators, and items}
 \usage{
 search_datasets(code, dataset, latest = TRUE)
+
+FAOsearch(code, dataset, latest = TRUE)
 }
 \arguments{
-\item{code}{character code of the dataset, listed as DatasetCode}
+\item{code}{character. Codes of desired datasets, listed as DatasetCode}
 
-\item{dataset}{character name of the dataset (or part of the name), listed as DatasetName in the output data frame}
+\item{dataset}{character. Name of the dataset (or part of the name), listed as label in the output data frame}
 
-\item{latest}{boolean sort list by latest updates}
-
-\item{topic}{character topic from list}
-
-\item{full}{boolean, TRUE returns the full table with all columns}
+\item{latest}{logical. Sort list by latest updates}
 }
 \description{
-Get full list of datasets from the FAOSTAT database with the Code, Dataset Name and Topic.
+Get full list of datasets from the FAOSTAT database with the Code, dataset name and updates.
 }
 \examples{
 \dontrun{
 # Find information about all datasets
-fao_metadata <- FAOsearch()    
+fao_metadata <- search_datasets()    
 # Find information about the forestry dataset
-FAOsearch(code="FO")
+search_datasets(code="FO")
 # Find information about datasets whose titles contain the word "Flows"
-FAOsearch(dataset="Flows", full = FALSE)
+search_datasets(dataset="Flows")
 }
 }
