@@ -20,3 +20,5 @@
 ##'
 
 .FAOSTATenv <- new.env()
+# Remove CHECK note due to non-standard evaluation in data.table
+utils::globalVariables(c("label", "date_update"))
