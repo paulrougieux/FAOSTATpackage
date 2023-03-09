@@ -1,46 +1,57 @@
-#' Search FAOSTAT domains, datasets, elements, indicators, and items 
-#' 
-#' Get full list of datasets from the FAOSTAT database with the Code, dataset name and updates.
-#' 
+#' Search FAOSTAT domains, datasets, elements, indicators, and items
+#'
+#' Get full list of datasets from the FAOSTAT database with the Code, dataset
+#' name and updates.
+#'
 #' @param code character. Codes of desired datasets, listed as DatasetCode
-#' @param dataset character. Name of the dataset (or part of the name), listed as label in the output data frame
+#' @param dataset character. Name of the datasets, listed as label in the output
+#'   data frame. Can take regular expressions.
 #' @param latest logical. Sort list by latest updates
-#' @examples 
+#' @param reset_cache logical. By default, data is saved after a first run and
+#'   reused. Setting this to true causes the function to pull data from FAO
+#'   again
+#' @examples
 #' \dontrun{
 #' # Find information about all datasets
-#' fao_metadata <- search_datasets()    
+#' fao_metadata <- search_datasets()
 #' # Find information about the forestry dataset
 #' search_datasets(code="FO")
 #' # Find information about datasets whose titles contain the word "Flows"
 #' search_datasets(dataset="Flows")
 #' }
-#' 
-#' @return A data.frame with the columns:
-#'  code, label, date_update, note_update, release_current, state_current, year_current, release_next, state_next, year_next
-#' @export 
+#'
+#' @return A data.frame with the columns: code, label, date_update, note_update,
+#'   release_current, state_current, year_current, release_next, state_next,
+#'   year_next
+#' @export
 
- search_datasets = function(code, dataset, latest = TRUE){
+ search_datasets = function(code, dataset, latest = TRUE, reset_cache = FALSE){
     
     if (deparse(match.call()[[1]]) == "FAOsearch") {
         .Deprecated("search_fao", msg = "FAOsearch has deprecated been replaced by search_datasets as the old API doesn't work anymore. 
                 search_datasets was called instead")
     }
     
-     if(length(dataset > 1)){
+     # You could in theory allow multiple, but I don't think that's expected usage
+     if(length(dataset) > 1){
          warning("More than 1 values was supplied to dataset, only the first will be used")
          dataset <- dataset[1]
      }
      
-    search_data <- get_fao("/domains")
+    search_data <- cache_data("search_datasets", get_fao("/domains"), reset = reset_cache)
     
     data <- rbindlist(content(search_data)[["data"]], fill = TRUE)
     metadata <- content(search_data)[["metadata"]]
     
+    # Ensure that column names come from the current environment and not from
+    # within the table
+    function_env <- environment()
+    
     if(!missing(code)){
-        data <- data[code %chin% get("code", envir = parent.frame()),]
+        data <- data[code %chin% get("code", envir = function_env),]
     }
     if(!missing(dataset)){
-        data <- data[grepl(get("dataset", envir = parent.frame()), dataset),]
+        data <- data[grepl(get("dataset", envir = function_env), label),]
     }
         
     if(latest){
