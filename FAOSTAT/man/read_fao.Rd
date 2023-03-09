@@ -14,6 +14,7 @@ read_fao(
   item_format = c("CPC", "FAO"),
   dataset = "RL",
   metadata_cols = c("codes", "units", "flags", "notes"),
+  clean_format = c("make.names", "unsanitised", "unsanitized", "snake_case"),
   include_na = FALSE,
   language = c("en", "fr", "es")
 )
@@ -27,6 +28,7 @@ getFAO(
   item_format = c("CPC", "FAO"),
   dataset = "RL",
   metadata_cols = c("codes", "units", "flags", "notes"),
+  clean_format = c("make.names", "unsanitised", "unsanitized", "snake_case"),
   include_na = FALSE,
   language = c("en", "fr", "es")
 )
@@ -49,12 +51,17 @@ needs to use FAOSTAT codes)}
 
 \item{metadata_cols}{character. Metadata columns to include in output}
 
-\item{include_na}{logical. Whether to include NAs for combinations of dimensions with no data}
+\item{clean_format}{character/function. Whether to clean columns. Either one
+of the formats described in [change_case] or a formatting function}
+
+\item{include_na}{logical. Whether to include NAs for combinations of
+dimensions with no data}
 
 \item{language}{character. 2 letter language code for output labels}
 }
 \value{
-data.frame in long format (wide not yet supported). Contains attributes for the URL and parameters used.
+data.frame in long format (wide not yet supported). Contains
+  attributes for the URL and parameters used.
 }
 \description{
 Uses the same functionality as the web interface to pull data from the

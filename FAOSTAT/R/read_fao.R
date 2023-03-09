@@ -14,16 +14,20 @@
 #' @param item_format character. Item code
 #' @param dataset character. FAO dataset desired, e.g. RL, FBS
 #' @param metadata_cols character. Metadata columns to include in output
-#' @param include_na logical. Whether to include NAs for combinations of dimensions with no data
+#' @param clean_format character/function. Whether to clean columns. Either one
+#'   of the formats described in [change_case] or a formatting function
+#' @param include_na logical. Whether to include NAs for combinations of
+#'   dimensions with no data
 #' @param language character. 2 letter language code for output labels
-#' 
-#' @return data.frame in long format (wide not yet supported). Contains attributes for the URL and parameters used.
-#' 
+#'
+#' @return data.frame in long format (wide not yet supported). Contains
+#'   attributes for the URL and parameters used.
+#'
 #' @examples
-#' 
+#'
 #' # Get data for Cropland (6620) Area (5110) in Antigua and Barbuda (8), 2017
 #' df = read_fao(area_codes = "8", element_codes = "5110", item_codes = "6620", year_codes = "2017")
-#' 
+#'
 #' @export
 
 read_fao <- function(area_codes, element_codes, item_codes, year_codes, 
@@ -31,6 +35,7 @@ read_fao <- function(area_codes, element_codes, item_codes, year_codes,
                    item_format = c("CPC", "FAO"),
                    dataset = "RL", 
                    metadata_cols = c("codes", "units", "flags", "notes"),
+                   clean_format = c("make.names", "unsanitised", "unsanitized", "snake_case"),
                    include_na = FALSE,
                    language = c("en", "fr", "es")){
   
@@ -42,6 +47,13 @@ read_fao <- function(area_codes, element_codes, item_codes, year_codes,
   coll <- function(string){
     paste0(string, collapse = ",")
   }
+  
+  #Prepare clean formatter for cleaning output column names
+  if (!is.function(clean_format)){
+    clean_formatter = function(o) {change_case(o, new_case = match.arg(NULL, clean_format))}
+  } else {
+      clean_formatter = clean_format
+    }
   
   language = match.arg(language, several.ok = FALSE)
   area_format = match.arg(area_format, several.ok = FALSE)
@@ -81,13 +93,16 @@ read_fao <- function(area_codes, element_codes, item_codes, year_codes,
   
   resp_content <- content(resp, type = "text", encoding = "UTF-8")
   
-  ret <- as.data.table(fread(text = resp_content))
+  ret <- fread(text = resp_content)
+  
+  setnames(ret, new = clean_formatter)
+  ret <- as.data.frame(ret)
   
   #TODO Add China replacement function 
   attr(ret, "url") <- resp$url
   attr(ret, "params") <- params
   
-  return(ret)
+  return(ret[])
 }
 
 #' @rdname read_fao
