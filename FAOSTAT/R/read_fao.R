@@ -24,9 +24,12 @@
 #'   attributes for the URL and parameters used.
 #'
 #' @examples
+#' 
+#' \dontrun{
 #'
 #' # Get data for Cropland (6620) Area (5110) in Antigua and Barbuda (8), 2017
 #' df = read_fao(area_codes = "8", element_codes = "5110", item_codes = "6620", year_codes = "2017")
+#'}
 #'
 #' @export
 

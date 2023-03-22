@@ -4,7 +4,7 @@
 #' @param name character. Key to which data is bound
 #' @param environment environment. .FAOSTATenv by default
 #' @param data object. Data to be cached
-#' @param reset logical. W
+#' @param reset logical. Should the cache be replaced with new data?
 #' @keywords internal
 
 check_cache <- function(name, environment = .FAOSTATenv) {
@@ -13,6 +13,10 @@ check_cache <- function(name, environment = .FAOSTATenv) {
 
 cache_retrieve <- function(name, environment = .FAOSTATenv) {
   get(name, envir = environment)
+}
+
+cache_delete <- function(name, environment = .FAOSTATenv){
+  rm(list = name, envir = environment)
 }
 
 cache_data <-

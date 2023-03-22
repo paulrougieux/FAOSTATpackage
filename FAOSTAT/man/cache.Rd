@@ -13,7 +13,7 @@ check_cache(name, environment = .FAOSTATenv)
 
 \item{data}{object. Data to be cached}
 
-\item{reset}{logical. W}
+\item{reset}{logical. Should the cache be replaced with new data?}
 }
 \description{
 Cache files read in by the API
