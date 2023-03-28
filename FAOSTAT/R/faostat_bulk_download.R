@@ -100,7 +100,7 @@ read_faostat_bulk <- function(zip_file_name,
 
 #' @rdname download_faostat_bulk
 #' @param code character. Dataset code
-#' @param subset character. Use \link(read_bulk_metadata). Request all data,
+#' @param subset character. Use \code{read_bulk_metadata}. Request all data,
 #'   normalised data or region
 #' @return data frame of FAOSTAT data
 #' @export

@@ -32,7 +32,7 @@ underscores.}
 
 \item{code}{character. Dataset code}
 
-\item{subset}{character. Use \link(read_bulk_metadata). Request all data,
+\item{subset}{character. Use \code{read_bulk_metadata}. Request all data,
 normalised data or region}
 
 \item{dataset_code}{character. Dataset code}
