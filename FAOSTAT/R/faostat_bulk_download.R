@@ -101,12 +101,31 @@ read_faostat_bulk <- function(zip_file_name,
 #' @param code character dataset code
 #' @return data frame of FAOSTAT data 
 #' @export
-get_faostat_bulk <- function(code, data_folder){
+get_faostat_bulk <- function(code, data_folder = ".", subset = "All Data Normalized"){
+    
+    dir.create(data_folder, showWarnings = FALSE, recursive = TRUE)
+    
     # Load information about the given dataset code 
-    metadata <- FAOsearch(code = code)
+    metadata <- read_bulk_metadata(dataset_code = code)
+    
+    metadata_url = metadata[metadata$FileContent == subset, "URL"]
+    
     # Use the result of the search to download the data and assign it to a data frame 
-    download_faostat_bulk(url_bulk = metadata$filelocation, data_folder = data_folder)
-    output <- read_faostat_bulk(file.path(data_folder, basename(metadata$filelocation)))
+    download_faostat_bulk(url_bulk = metadata_url, data_folder = data_folder)
+    output <- read_faostat_bulk(file.path(data_folder, basename(metadata_url)))
     return(output)
+}
+
+read_bulk_metadata <- function(dataset_code){
+    metadata_req <- get_fao(paste0("/bulkdownloads/", dataset_code))
+    metadata <- content(metadata_req)
+    
+    meta_metadata <- metadata$metadata
+    data <- metadata$data
+    out <- as.data.frame(rbindlist(lapply(data, as.data.table)))
+    
+    attr(out, "metadata") <- meta_metadata
+    
+    return(out)
 }
 
