@@ -13,11 +13,11 @@
 #' @examples
 #' \dontrun{
 #' # Find information about all datasets
-#' fao_metadata <- search_datasets()
+#' fao_metadata <- search_dataset()
 #' # Find information about the forestry dataset
-#' search_datasets(code="FO")
+#' search_dataset(code="FO")
 #' # Find information about datasets whose titles contain the word "Flows"
-#' search_datasets(dataset="Flows")
+#' search_dataset(dataset="Flows")
 #' }
 #'
 #' @return A data.frame with the columns: code, label, date_update, note_update,
@@ -25,20 +25,23 @@
 #'   year_next
 #' @export
 
- search_datasets = function(code, dataset, latest = TRUE, reset_cache = FALSE){
+ search_dataset = function(code, dataset, latest = TRUE, reset_cache = FALSE){
     
     if (deparse(match.call()[[1]]) == "FAOsearch") {
-        .Deprecated("search_fao", msg = "FAOsearch has deprecated been replaced by search_datasets as the old API doesn't work anymore. 
-                search_datasets was called instead")
+        .Deprecated("search_fao", msg = "FAOsearch has deprecated been replaced by search_dataset as the old API doesn't work anymore. 
+                search_dataset was called instead")
     }
     
+     if(missing(code)) code <- NULL
+     if(missing(dataset)) dataset <- NULL
+     
      # You could in theory allow multiple, but I don't think that's expected usage
      if(length(dataset) > 1){
          warning("More than 1 values was supplied to dataset, only the first will be used")
          dataset <- dataset[1]
      }
      
-    search_data <- cache_data("search_datasets", get_fao("/domains"), reset = reset_cache)
+    search_data <- cache_data("search_dataset", get_fao("/domains"), reset = reset_cache)
     
     data <- rbindlist(content(search_data)[["data"]], fill = TRUE)
     metadata <- content(search_data)[["metadata"]]
@@ -47,10 +50,10 @@
     # within the table
     function_env <- environment()
     
-    if(!missing(code)){
+    if(!is.null(code)){
         data <- data[code %chin% get("code", envir = function_env),]
     }
-    if(!missing(dataset)){
+    if(!is.null(dataset)){
         data <- data[grepl(get("dataset", envir = function_env), label),]
     }
         
@@ -65,8 +68,8 @@
     return(data)
  }
  
- #' @rdname search_datasets
+ #' @rdname search_dataset
  #' @export
  #' 
 
-FAOsearch <- search_datasets
+FAOsearch <- search_dataset
