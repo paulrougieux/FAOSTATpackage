@@ -36,5 +36,5 @@ instead of caching}
 \description{
 The function translate any country code scheme to another if both are in the
 are among the types present in the FAO API. If you require other codes or
-conversion of countr names to codes, consider the \code{countrycodes} package.
+conversion of country names to codes, consider the \code{countrycodes} package.
 }
