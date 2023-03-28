@@ -26,7 +26,7 @@
 #'   year_next
 #' @export
 
- search_dataset = function(dataset_code, dataset_label, latest = TRUE, reset_cache = FALSE){
+ search_dataset <- function(dataset_code, dataset_label, latest = TRUE, reset_cache = FALSE){
     
     if (deparse(match.call()[[1]]) == "FAOsearch") {
         .Deprecated("search_fao", msg = "FAOsearch has deprecated been replaced by search_dataset as the old API doesn't work anymore. 
