@@ -1,22 +1,25 @@
 ##' A function to translate between different country coding systems
 ##'
-##' The function translate any country code scheme to another if both
-##' are in the FAOcountryProfile. These wil
-##' 
-##' 
+##' The function translate any country code scheme to another if both are in the
+##' are among the types present in the FAO API. If you require other codes or
+##' conversion of country names to codes, consider the `countrycodes` package.
+##'
+##' @md
+##'
 ##' @param data The data frame
 ##' @param from The name of the old coding system
 ##' @param to The name of the new coding system
 ##' @param oldCode The column name of the old country coding scheme
-##' @param reset_cache logical. Whether to pull data from FAOSTAT directly instead of caching
+##' @param reset_cache logical. Whether to pull data from FAOSTAT directly
+##'   instead of caching
 ##' @export
-##'
+##' 
 
-translate_countrycode = function (data, from = c("FAO", "M49", "ISO2", "ISO3"), to=c("M49", "FAO", "ISO2", "ISO3", "name"), oldCode, reset_cache = FALSE){
+translate_countrycodes = function (data, from = c("FAO", "M49", "ISO2", "ISO3"), to=c("M49", "FAO", "ISO2", "ISO3", "name"), oldCode, reset_cache = FALSE){
     
     if (deparse(match.call()[[1]]) == "translateCountryCode") {
         .Deprecated("search_fao", msg = "translateCountryCode has deprecated been replaced by translate_countrycode as the old API doesn't work anymore. 
-                translate_countrycode was called instead")
+                translate_countrycodes was called instead")
     }
     
     
@@ -73,10 +76,10 @@ translate_countrycode = function (data, from = c("FAO", "M49", "ISO2", "ISO3"), 
     return(new_data)
 }
 
-#' @rdname translate_countrycode
+#' @rdname translate_countrycodes
 #' @export
 #' 
 
-translateCountryCode <- translate_countrycode
+translateCountryCode <- translate_countrycodes
 
 
