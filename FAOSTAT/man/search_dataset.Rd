@@ -3,23 +3,24 @@
 \name{search_dataset}
 \alias{search_dataset}
 \alias{FAOsearch}
-\title{Search FAOSTAT domains, datasets, elements, indicators, and items}
+\title{Search FAOSTAT dataset_codes, datasets, elements, indicators, and items}
 \usage{
-search_dataset(domain, dataset, latest = TRUE, reset_cache = FALSE)
+search_dataset(dataset_code, dataset_label, latest = TRUE, reset_cache = FALSE)
 
-FAOsearch(domain, dataset, latest = TRUE, reset_cache = FALSE)
+FAOsearch(dataset_code, dataset_label, latest = TRUE, reset_cache = FALSE)
 }
 \arguments{
-\item{dataset}{character. Name of the datasets, listed as label in the output
-data frame.}
+\item{dataset_code}{character. Code of desired datasets, listed as `code` in
+output.}
+
+\item{dataset_label}{character. Name of the datasets, listed as `label` in the output
+data frame. Can take regular expressions.}
 
 \item{latest}{logical. Sort list by latest updates}
 
 \item{reset_cache}{logical. By default, data is saved after a first run and
 reused. Setting this to true causes the function to pull data from FAO
 again}
-
-\item{code}{character. Domain of desired datasets, listed as `code` in output}
 }
 \value{
 A data.frame with the columns: code, label, date_update, note_update,
@@ -35,7 +36,7 @@ name and updates.
 # Find information about all datasets
 fao_metadata <- search_dataset()
 # Find information about forestry datasets
-search_dataset(domain="FO")
+search_dataset(dataset_code="FO")
 # Find information about datasets whose titles contain the word "Flows"
 search_dataset(dataset="Flows")
 }

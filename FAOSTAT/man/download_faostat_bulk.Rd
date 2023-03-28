@@ -4,14 +4,17 @@
 \alias{download_faostat_bulk}
 \alias{read_faostat_bulk}
 \alias{get_faostat_bulk}
+\alias{read_bulk_metadata}
 \title{Download bulk data from the faostat website
 https://www.fao.org/faostat/en/#data}
 \usage{
-download_faostat_bulk(url_bulk, data_folder)
+download_faostat_bulk(url_bulk, data_folder = ".")
 
 read_faostat_bulk(zip_file_name, encoding = "latin1", rename_element = TRUE)
 
-get_faostat_bulk(code, data_folder)
+get_faostat_bulk(code, data_folder = tempdir(), subset = "All Data Normalized")
+
+read_bulk_metadata(dataset_code)
 }
 \arguments{
 \item{url_bulk}{character url of the faostat bulk zip file to download}
@@ -27,9 +30,16 @@ facilitate the use of elements as column names later when the data frame
 gets reshaped to a wider format. Replace non alphanumeric characters by
 underscores.}
 
-\item{code}{character dataset code}
+\item{code}{character. Dataset code}
+
+\item{subset}{character. Use \link(read_bulk_metadata). Request all data,
+normalised data or region}
+
+\item{dataset_code}{character. Dataset code}
 }
 \value{
+data frame of FAOSTAT data
+
 data frame of FAOSTAT data
 
 data frame of FAOSTAT data

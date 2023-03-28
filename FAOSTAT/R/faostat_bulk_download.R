@@ -64,7 +64,8 @@
 #' saveRDS(forestry,"data_raw/forestry_e_all_data.rds")
 #' }
 #' @export
-download_faostat_bulk <- function(url_bulk, data_folder){
+
+download_faostat_bulk <- function(url_bulk, data_folder = "."){
     file_name <- basename(url_bulk)
     download.file(url_bulk, file.path(data_folder, file_name))
 }
@@ -98,10 +99,12 @@ read_faostat_bulk <- function(zip_file_name,
 
 
 #' @rdname download_faostat_bulk
-#' @param code character dataset code
-#' @return data frame of FAOSTAT data 
+#' @param code character. Dataset code
+#' @param subset character. Use \link(read_bulk_metadata). Request all data,
+#'   normalised data or region
+#' @return data frame of FAOSTAT data
 #' @export
-get_faostat_bulk <- function(code, data_folder = ".", subset = "All Data Normalized"){
+get_faostat_bulk <- function(code, data_folder = tempdir(), subset = "All Data Normalized"){
     
     dir.create(data_folder, showWarnings = FALSE, recursive = TRUE)
     
@@ -115,6 +118,11 @@ get_faostat_bulk <- function(code, data_folder = ".", subset = "All Data Normali
     output <- read_faostat_bulk(file.path(data_folder, basename(metadata_url)))
     return(output)
 }
+
+#' @rdname download_faostat_bulk
+#' @param dataset_code character. Dataset code
+#' @return data frame of FAOSTAT data 
+#' @export
 
 read_bulk_metadata <- function(dataset_code){
     metadata_req <- get_fao(paste0("/bulkdownloads/", dataset_code))
