@@ -23,11 +23,11 @@ change_case <- function(old_names, new_case = c("make.names", "unsanitised", "un
   switch(new_case,
          unsanitised = old_names,
          make.names = make.names(old_names, ...),
-         snake_case = tosnake(old_names, ...)
+         snake_case = to_snake(old_names, ...)
          )
 }
 
-tosnake <- function(old_names){
+to_snake <- function(old_names){
   
   gsub("[^[:alnum:]]", "_", tolower(old_names))
 

@@ -92,7 +92,7 @@ read_faostat_bulk <- function(zip_file_name,
     # and replace non alphanumeric characters by underscores.
     names(df) <- gsub("[^[:alnum:]]", "_", tolower(names(df)))
     if(rename_element & "element" %in% names(df)){
-        df$element <- gsub("[^[:alnum:]]","_",tolower(df$element))
+        df$element <- to_snake(df$element)
     }
     return(df)
 }
