@@ -18,7 +18,7 @@
 #' # Find information about forestry datasets
 #' search_dataset(dataset_code="FO")
 #' # Find information about datasets whose titles contain the word "Flows"
-#' search_dataset(dataset="Flows")
+#' search_dataset(dataset_label="Flows")
 #' }
 #'
 #' @return A data.frame with the columns: code, label, date_update, note_update,
@@ -34,7 +34,7 @@
     }
     
      if(missing(dataset_code)) dataset_code <- NULL
-     if(missing(dataset)) dataset <- NULL
+     if(missing(dataset_label)) dataset <- NULL
      
      # You could in theory allow multiple, but I don't think that's expected usage
      if(length(dataset) > 1){

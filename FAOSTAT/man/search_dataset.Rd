@@ -38,7 +38,7 @@ fao_metadata <- search_dataset()
 # Find information about forestry datasets
 search_dataset(dataset_code="FO")
 # Find information about datasets whose titles contain the word "Flows"
-search_dataset(dataset="Flows")
+search_dataset(dataset_label="Flows")
 }
 
 }
