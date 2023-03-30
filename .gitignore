@@ -7,6 +7,9 @@
 *.pdf
 *.synctex.gz
 *.tex
+*.toc
+*.aux
+*.out
 *.tar.gz
 *.Rcheck/*
 *.Rproj
