@@ -73,8 +73,20 @@ are not yet deduplicated.
 
 \dontrun{
 
-# Get data for Cropland (6620) Area (5110) in Antigua and Barbuda (8), 2017
-df = read_fao(area_codes = "8", element_codes = "5110", item_codes = "6620", year_codes = "2017")
+# Get data for Cropland (6620) Area (5110) in Antigua and Barbuda (8) in 2017
+df = read_fao(area_codes = "8", element_codes = "5110", item_codes = "6620", 
+year_codes = "2017")
+# Load cropland area for a range of year
+df = read_fao(area_codes = "106", element_codes = "5110", item_codes = "6620", 
+year_codes = 2010:2020)
+
+# Find which country codes are available
+metadata_area <- read_dimension_metadata("RL", "area")
+# Find which items are available
+metadata_item <- read_dimension_metadata("RL", "item")
+# Find which elements are available
+metadata_element <- read_dimension_metadata("RL", "element")
+
 }
 
 }
