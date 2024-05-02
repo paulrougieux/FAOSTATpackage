@@ -46,9 +46,9 @@ data frame of FAOSTAT data
 }
 \description{
 \itemize{
- \item{}{\code{get_faostat_bulk()} loads the given data set code and returns a data frame.}
- \item{}{\code{download_faostat_bulk()} loads data from the given url and saves it to a compressed zip file.}
- \item{}{\code{read_faostat_bulk()} Reads the compressed .csv .zip file into a data frame.
+ \item{\code{get_faostat_bulk()}}{loads the given data set code and returns a data frame.}
+ \item{\code{download_faostat_bulk()}}{loads data from the given url and saves it to a compressed zip file.}
+ \item{\code{read_faostat_bulk()}{Reads the compressed .csv .zip file into a data frame.
  More precisely it unzips the archive. 
  Reads the main csv file within the archive.
  The main file has the same name as the name of the archive. 
