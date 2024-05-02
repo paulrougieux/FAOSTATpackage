@@ -1,10 +1,10 @@
 Package: FAOSTAT
 Type: Package
 Title: Download Data from the FAOSTAT Database
-Version: 2.3.0
+Version: 2.3.1
 Date: 2023-03-29
-Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
-Maintainer: Paul Rougieux <paul.rougieux@gmail.com>
+Author: Michael C. J., Markus Gesmann, Filippo Gheri, Paul Rougieux <paul.rougieux@gmail.com>, Sebastian Campbell
+Maintainer: Paul Rougieux <paul.rougieux@gmail.com>, Sebastian Campbell
 Description: Download Data from the FAOSTAT Database of the Food and Agricultural Organization (FAO) of the United Nations.
     A list of functions to download statistics from FAOSTAT (database of the FAO <https://www.fao.org/faostat/>) 
     and WDI (database of the World Bank <https://data.worldbank.org/>), and to perform some harmonization operations.
@@ -25,4 +25,4 @@ ZipData: no
 VignetteBuilder: knitr
 Suggests: knitr,
     testthat
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
