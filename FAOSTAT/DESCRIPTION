@@ -4,7 +4,7 @@ Title: Download Data from the FAOSTAT Database
 Version: 2.3.1
 Date: 2023-03-29
 Author: Michael C. J., Markus Gesmann, Filippo Gheri, Paul Rougieux <paul.rougieux@gmail.com>, Sebastian Campbell
-Maintainer: Paul Rougieux <paul.rougieux@gmail.com>, Sebastian Campbell
+Maintainer: Paul Rougieux <paul.rougieux@gmail.com>
 Description: Download Data from the FAOSTAT Database of the Food and Agricultural Organization (FAO) of the United Nations.
     A list of functions to download statistics from FAOSTAT (database of the FAO <https://www.fao.org/faostat/>) 
     and WDI (database of the World Bank <https://data.worldbank.org/>), and to perform some harmonization operations.
