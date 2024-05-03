@@ -9,9 +9,11 @@ This repository contains all the files to build the FAOSTAT package.
 # NOTE: This package is currently under development at:
 # https://gitlab.com/paulrougieux/faostatpackage/
 
-If you have an issue, could you kindly report it with a reproducible example including
-input code and error output on the gitlab issue page
-https://gitlab.com/paulrougieux/faostatpackage/-/issues
+Kindly ask questions and report issues on the gitlab issue page at:
+https://gitlab.com/paulrougieux/faostatpackage/-/issues You are more likely to get a
+meaningful answer to your question if you provide a [reproducible
+example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example),
+including sample data, R code and output.
 
 
 # Installation
